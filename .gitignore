@@ -1,0 +1,47 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Built artifacts
+bin/
+gen/
+out/
+build/
+.gradle/
+
+# IDE - IntelliJ/Android Studio
+.idea/
+*.iws
+*.ipr
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Log files
+*.log
+
+# Android Studio - Navigation editor temp files
+.navigation/
+
+# OS related files
+
+Thumbs.db
+
+# Keystore files (Sangat penting jangan di-upload jika berisi password produksi)
+*.jks
+*.keystore
+
+# Google Services configuration
+google-services.json
