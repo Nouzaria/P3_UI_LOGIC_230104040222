@@ -1,69 +1,105 @@
-# P3_UI_Logic - Menghubungkan UI dengan Logic
+# 📱 UI-Logic Bridge
 
-Proyek ini adalah bagian dari Modul Praktikum **Mobile Programming 2025** yang berfokus pada pengembangan aplikasi Android menggunakan **Kotlin**. Tujuan utama dari proyek ini adalah memahami bagaimana menghubungkan antarmuka pengguna (UI) yang dibuat dengan XML ke logika pemrograman di file Activity. 
+**UI-Logic Bridge** adalah proyek percontohan Android yang berfokus pada teknik fundamental dalam menghubungkan antarmuka pengguna (XML) dengan logika pemrograman (Kotlin). Proyek ini mendemonstrasikan bagaimana interaksi pengguna pada komponen visual diubah menjadi data yang dapat diproses oleh aplikasi secara interaktif dan informatif.
 
-## 📝 Deskripsi Proyek
+---
 
-Aplikasi ini merupakan studi kasus sederhana "Input Nama" di mana pengguna memasukkan teks ke dalam `EditText`, kemudian menekan tombol `Button` untuk memproses data tersebut dan menampilkannya kembali dalam bentuk sapaan interaktif pada `TextView` serta notifikasi `Toast`. 
+## 📖 Table of Contents
 
-## 🚀 Fitur Utama
+* [Overview](#-overview)
+* [Key Features](#-key-features)
+* [Architecture & Design](#-architecture--design)
+* [Tech Stack](#-tech-stack)
+* [Installation](#-installation)
+* [Validation Logic](#-validation-logic)
 
-* **Input Handling**: Mengambil data teks dari komponen `EditText`. 
-* **Event Handling**: Mengimplementasikan `setOnClickListener` pada tombol untuk merespons aksi pengguna. 
-* **Validasi Input**: Menampilkan pesan error jika input kosong dan memberikan fokus kembali ke field yang salah. 
-* **Output Interaktif**: Menampilkan hasil pemrosesan ke `TextView` dan pesan singkat melalui `Toast`. 
-* **Dual Layout Implementation**: Implementasi menggunakan `LinearLayout` (berurutan) dan `ConstraintLayout` (relatif/responsif). 
+---
 
+## 🚀 Overview
 
-## 🛠️ Spesifikasi & Alat
+Dalam pengembangan aplikasi Android modern, memahami keterkaitan antara file Layout dan file Activity adalah kunci utama. Proyek ini mensimulasikan skenario *input-proses-output* sederhana di mana aplikasi menerima data teks, memvalidasinya, dan memberikan respon balik secara *real-time* kepada pengguna.
 
-* **IDE**: Android Studio 
-* **Bahasa Pemrograman**: Kotlin 
-* **Minimum SDK**: API 21: Android 5.0 (Lollipop) 
-* **Layouting**: XML (LinearLayout & ConstraintLayout) 
+Aplikasi ini tidak hanya menampilkan data, tetapi juga menangani berbagai *state* aplikasi seperti error handling ketika input kosong dan memberikan umpan balik visual melalui komponen notifikasi ringan.
 
+---
 
-* **Spesifikasi Perangkat (Minimum)**:
-  * RAM: 8 GB (Disarankan 16 GB) 
-  * Prosesor: Intel i5 / Ryzen 5 
+## ✨ Key Features
 
+### 1. ⌨️ Smart Input Handling
 
-## 📂 Struktur Kode Penting
+* **Dynamic Retrieval:** Mengambil data dari `EditText` secara efisien menggunakan teknik `findViewById`.
+* **Text Processing:** Implementasi fungsi `trim()` untuk memastikan data yang diambil bersih dari spasi yang tidak perlu.
+* **Auto-Focus Logic:** Sistem secara otomatis memberikan fokus kembali ke kolom input jika terjadi kesalahan validasi.
 
-* **`res/layout/activity_main.xml`**: Berisi definisi UI aplikasi. Menggunakan ID unik seperti `@+id/edtName`, `@+id/btnSubmit`, dan `@+id/txtResult` sebagai jembatan ke kode logika.
+### 2. ⚠️ Advanced Validation & Feedback
 
-* **`MainActivity.kt`**: Berisi logika aplikasi, termasuk:
-  * `setContentView`: Memasang layout ke Activity. 
-  * `findViewById`: Menghubungkan komponen UI XML ke variabel Kotlin. 
-  * `trim()` & `isEmpty()`: Untuk pengolahan dan validasi string input. 
+* **Error Visualizer:** Memberikan peringatan visual langsung pada komponen jika input tidak memenuhi kriteria (misalnya input kosong).
+* **Toast Notifications:** Memberikan konfirmasi singkat "Input diterima" setelah data berhasil diproses tanpa mengganggu alur pengguna.
+* **Interactive Output:** Mengubah konten `TextView` secara dinamis berdasarkan input nama yang diberikan pengguna.
 
+### 3. 🌓 UI State Management (Extended)
 
-## 📸 Tampilan Aplikasi
-
-| Layout | Deskripsi |
-| --- | --- |
-| **LinearLayout** | Elemen diatur secara vertikal dari atas ke bawah. |
-| **ConstraintLayout** | Elemen diposisikan secara relatif terhadap parent atau komponen lain, lebih fleksibel untuk desain modern. |
-
-> **Catatan**: Hasil running aplikasi akan menampilkan pesan "Halo, [Nama]! Selamat datang di Praktikum 3" setelah tombol diklik.
-
-
-## 🔧 Cara Menjalankan
-
-1. Clone repository ini atau buka folder proyek di **Android Studio**.
-2. Pastikan Gradle selesai melakukan sinkronisasi (*Sync Project with Gradle Files*).
-3. Pilih emulator (AVD) atau hubungkan perangkat Android fisik. 
-4. Klik tombol **Run** (Ikon Play hijau).
-
-## ⚠️ Troubleshooting Umum
-
-* **NullPointerException**: Pastikan `findViewById` dipanggil **setelah** `setContentView`. 
-* **ID Tidak Ditemukan**: Periksa kembali apakah ID di file XML sudah sama persis dengan yang dipanggil di file Kotlin. 
-* **Logcat**: Gunakan fitur Logcat di Android Studio untuk melacak pesan error lebih detail. 
+* **Theme Switching:** Mendukung perubahan mode tampilan antara *Light Mode* dan *Dark Mode* secara langsung melalui kode Kotlin.
+* **Responsive Layouts:** Mengimplementasikan perbandingan antara `LinearLayout` yang statis dan `ConstraintLayout` yang fleksibel untuk berbagai ukuran layar.
 
 
 ---
 
-**Dosen Pengampu:** Muhayat, M.IT 
+## 🎨 Architecture & Design
 
-**Tahun:** 2025 
+Aplikasi ini dirancang dengan memisahkan struktur tampilan dan logika kontroler:
+
+* **Structural Layer (XML):** Menggunakan `LinearLayout` untuk penyusunan elemen vertikal yang konsisten dan `ConstraintLayout` untuk desain modern yang lebih responsif.
+* **Logic Layer (Kotlin):** Menangani *Event Handling* menggunakan `setOnClickListener` untuk merespons aksi klik pada tombol.
+* **Bridge Mechanism:** Menggunakan ID unik (seperti `@+id/edtName`) sebagai jembatan komunikasi antara file XML dan file Kotlin.
+
+
+---
+
+## 🛠 Tech Stack
+
+* **Language:** Kotlin 
+* **UI Framework:** XML-based Layouts (View System) 
+* **Min SDK:** API 21 (Android 5.0 Lollipop) 
+* **IDE:** Android Studio 
+* **Components:**
+  * `EditText` (User Input) 
+  * `Button` (Action Trigger) 
+  * `TextView` (Information Display) 
+  * `Toast` (Feedback) 
+
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/username/P3_UI_Logic_NimAnda.git
+
+```
+2. **Open in Android Studio**
+* Pastikan menggunakan versi terbaru dengan dukungan Kotlin.
+3. **Sync Gradle**
+* Tunggu hingga semua library pendukung seperti `AppCompat` terunduh sempurna.
+4. **Run Application**
+* Jalankan pada Emulator atau perangkat fisik dengan OS minimal Android 8 (Oreo).
+
+
+---
+
+## 🔒 Validation Logic
+
+Alur logika validasi dalam aplikasi ini adalah sebagai berikut:
+
+1. Sistem menangkap aksi klik pada `btnSubmit`.
+2. Data dari `edtName` dibaca dan diperiksa kelengkapannya.
+3. Jika **Kosong**: Menampilkan pesan error "Nama tidak boleh kosong!" pada kolom input.
+4. Jika **Berisi**: Memperbarui `txtResult` dengan sapaan khusus dan memunculkan *Toast* konfirmasi.
+
+
+---
+
+<p align="center">
+  Created by <b>Nouzaria</b>
+</p>
